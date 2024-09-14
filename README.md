@@ -1,3 +1,6 @@
+## ruler_slider
+
+[![pub](https://img.shields.io/badge/pub-v0.0.6-blue.svg)](https://pub.dev/packages/ruler_slider)
 
 # Ruler Slider Plugin for Flutter
 
