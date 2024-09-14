@@ -244,15 +244,17 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Label Vertical Offset: ${labelVerticalOffset.toStringAsFixed(1)}'),
-                  Slider(
-                    value: labelVerticalOffset,
-                    min: 10.0,
-                    max: 50.0,
-                    onChanged: (value) {
-                      setState(() {
-                        labelVerticalOffset = value;
-                      });
-                    },
+                  Expanded(
+                    child: Slider(
+                      value: labelVerticalOffset,
+                      min: 10.0,
+                      max: 50.0,
+                      onChanged: (value) {
+                        setState(() {
+                          labelVerticalOffset = value;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
