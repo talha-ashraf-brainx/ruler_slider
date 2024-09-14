@@ -15,10 +15,7 @@ This package provides a highly customizable horizontal ruler slider for Flutter.
 
 Here are some screenshots showcasing the RulerSlider in action:
 
-![Screenshot 3](assets/1.png)
-![Screenshot 1](assets/2.png)
-![Screenshot 2](assets/3.png)
-![Screenshot 3](assets/4.png)
+![Screenshot 3](assets/1.png)![Screenshot 1](assets/2.png)![Screenshot 2](assets/3.png)![Screenshot 3](assets/4.png)
 
 
 ## Parameters
