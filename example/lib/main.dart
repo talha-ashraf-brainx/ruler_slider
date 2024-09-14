@@ -76,7 +76,7 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
                 minValue: minValue,
                 maxValue: maxValue,
                 initialValue: initialValue,
-                rulerWidth: rulerWidth,
+                rulerWidth: MediaQuery.of(context).size.width,
                 rulerHeight: rulerHeight,
                 selectedBarColor: colorMap[selectedColor]!,
                 unselectedBarColor: Colors.grey,

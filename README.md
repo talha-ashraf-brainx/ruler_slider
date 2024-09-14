@@ -1,6 +1,6 @@
 ## ruler_slider
 
-[![pub](https://img.shields.io/badge/pub-v0.0.2-blue.svg)](https://pub.dev/packages/ruler_slider)
+[![pub](https://img.shields.io/badge/pub-v0.0.3-blue.svg)](https://pub.dev/packages/ruler_slider)
 
 # Ruler Slider Plugin for Flutter
 
@@ -91,7 +91,7 @@ Add the following line to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  ruler_slider: ^0.0.2
+  ruler_slider: ^0.0.3
 ```
 
 Then run `flutter pub get` to install the package.

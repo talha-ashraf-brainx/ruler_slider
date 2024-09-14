@@ -1,6 +1,6 @@
 name: ruler_slider
 description: A highly customizable Flutter widget that provides a ruler-style slider with adjustable tick marks, custom labels, spacing options, and real-time value callbacks.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/ahsanrazapk/ruler_slider
 repository: https://github.com/ahsanrazapk/ruler_slider
 
