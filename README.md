@@ -15,7 +15,7 @@ This package provides a highly customizable horizontal ruler slider for Flutter.
 
 Here are some screenshots showcasing the RulerSlider in action:
 
-![Screenshot 1](assets/1.png) ![Screenshot 2](assets/2.png) ![Screenshot 3](assets/3.png) ![Screenshot 4](assets/4.png) ![Screenshot 5](assets/5.png) ![Screenshot 6](assets/1.png)
+![Screenshot 1](https://github.com/ahsanrazapk/ruler_slider/blob/master/assets/1.png) ![Screenshot 2](assets/2.png) ![Screenshot 3](assets/3.png) ![Screenshot 4](assets/4.png) ![Screenshot 5](assets/5.png) ![Screenshot 6](assets/1.png)
 
 
 ## Parameters
@@ -88,7 +88,7 @@ Add the following line to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  ruler_slider: ^1.0.0
+  ruler_slider: ^0.0.2
 ```
 
 Then run `flutter pub get` to install the package.
@@ -114,7 +114,5 @@ If you find this project helpful and would like to support its development, you 
 
 [![Donate](https://img.shields.io/badge/Donate-Wise-00B9FF?style=for-the-badge&logo=wise&logoColor=white)](https://wise.com/pay/me/muhammadahsanr13)
 
-
-## License
 
 This package is open-source and free to use. Contributions are welcome!
