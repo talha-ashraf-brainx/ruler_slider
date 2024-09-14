@@ -18,7 +18,7 @@ This package provides a highly customizable horizontal ruler slider for Flutter.
 
 Here are some screenshots showcasing the RulerSlider in action:
 
-![Screenshot 1](https://github.com/ahsanrazapk/ruler_slider/raw/master/assets/1.png) ![Screenshot 2](https://github.com/ahsanrazapk/ruler_slider/raw/master/assets/2.png) ![Screenshot 3](https://github.com/ahsanrazapk/ruler_slider/raw/master/assets/3.png) ![Screenshot 4](https://github.com/ahsanrazapk/ruler_slider/raw/master/assets/4.png) ![Screenshot 5](https://github.com/ahsanrazapk/ruler_slider/raw/master/assets/5.png) ![Screenshot 6](https://github.com/ahsanrazapk/ruler_slider/raw/master/assets/1.png)
+![Screenshot 1](https://github.com/ahsanrazapk/ruler_slider/raw/master/example/assets/1.png) ![Screenshot 2](https://github.com/ahsanrazapk/ruler_slider/raw/master/example/assets/2.png) ![Screenshot 3](https://github.com/ahsanrazapk/ruler_slider/raw/master/example/assets/3.png) ![Screenshot 4](https://github.com/ahsanrazapk/ruler_slider/raw/master/example/assets/4.png) ![Screenshot 5](https://github.com/ahsanrazapk/ruler_slider/raw/master/example/assets/5.png) ![Screenshot 6](https://github.com/ahsanrazapk/ruler_slider/raw/master/example/assets/6.png)
 
 
 ## Parameters
