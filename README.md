@@ -107,6 +107,14 @@ Now you can use the `RulerSlider` widget in your Flutter application for creatin
 
 You can customize the ruler's appearance, tick spacing, and labels using the various parameters described above. The `onChanged` callback provides the selected value, making it easy to integrate the slider into your application logic.
 
+
+## Support and Donations
+
+If you find this project helpful and would like to support its development, you can donate via Wise (TransferWise). Your contributions are greatly appreciated!
+
+[![Donate](https://img.shields.io/badge/Donate-Wise-blue.svg)](https://wise.com/pay/me/muhammadahsanr13)
+
+
 ## License
 
 This package is open-source and free to use. Contributions are welcome!
