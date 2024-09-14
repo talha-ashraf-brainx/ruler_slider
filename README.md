@@ -112,7 +112,7 @@ You can customize the ruler's appearance, tick spacing, and labels using the var
 
 If you find this project helpful and would like to support its development, you can donate via Wise (TransferWise). Your contributions are greatly appreciated!
 
-[![Donate](https://img.shields.io/badge/Donate-Wise-blue.svg)](https://wise.com/pay/me/muhammadahsanr13)
+[![Donate](https://img.shields.io/badge/Donate-Wise-00B9FF?style=for-the-badge&logo=wise&logoColor=white)](https://wise.com/pay/me/muhammadahsanr13)
 
 
 ## License
