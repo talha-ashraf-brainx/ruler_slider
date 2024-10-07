@@ -57,7 +57,17 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
   };
 
   final List<String> customLabels = [
-    'Start', '10', '20', '30', '40', 'Mid', '60', '70', '80', '90', 'End'
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10'
   ];
 
   @override
@@ -73,13 +83,17 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
             children: [
               // Display the RulerSlider with all dynamic values
               RulerSlider(
+                showSelectedColor: false,
+                selectedMajorTickColor: Colors.blue,
+                selectedMinorTickColor: Colors.blue.shade100,
+                unselectedMajorTickColor: Colors.grey,
+                unselectedMinorTickColor: Colors.grey.shade200,
+                unelectedCenterTickColor: Colors.green,
                 minValue: minValue,
                 maxValue: maxValue,
                 initialValue: initialValue,
-                rulerWidth: MediaQuery.of(context).size.width/2,
+                rulerWidth: MediaQuery.of(context).size.width / 2,
                 rulerHeight: rulerHeight,
-                selectedBarColor: colorMap[selectedColor]!,
-                unselectedBarColor: Colors.grey,
                 tickSpacing: tickSpacing,
                 showFixedBar: showFixedBar,
                 fixedBarColor: Colors.red,
@@ -102,7 +116,7 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
                 customLabels: customLabels,
                 onChanged: (value) {
                   setState(() {
-                    initialValue = value;
+                    initialValue = value / 10;
                   });
                 },
               ),
@@ -195,7 +209,8 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Scroll Sensitivity: ${scrollSensitivity.toStringAsFixed(1)}'),
+                  Text(
+                      'Scroll Sensitivity: ${scrollSensitivity.toStringAsFixed(1)}'),
                   Slider(
                     value: scrollSensitivity,
                     min: 0.1,
@@ -211,7 +226,8 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Major Tick Height: ${majorTickHeight.toStringAsFixed(1)}'),
+                  Text(
+                      'Major Tick Height: ${majorTickHeight.toStringAsFixed(1)}'),
                   Slider(
                     value: majorTickHeight,
                     min: 10.0,
@@ -227,7 +243,8 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Minor Tick Height: ${minorTickHeight.toStringAsFixed(1)}'),
+                  Text(
+                      'Minor Tick Height: ${minorTickHeight.toStringAsFixed(1)}'),
                   Slider(
                     value: minorTickHeight,
                     min: 5.0,
@@ -243,7 +260,8 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Label Vertical Offset: ${labelVerticalOffset.toStringAsFixed(1)}'),
+                  Text(
+                      'Label Vertical Offset: ${labelVerticalOffset.toStringAsFixed(1)}'),
                   Expanded(
                     child: Slider(
                       value: labelVerticalOffset,

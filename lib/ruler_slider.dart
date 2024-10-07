@@ -84,17 +84,19 @@ import 'package:flutter/material.dart';
 /// - The ability to customize the appearance of the fixed bar and labels.
 ///
 
-
-
-
 class RulerSlider extends StatefulWidget {
   final double minValue;
   final double maxValue;
   final double initialValue;
   final double rulerWidth;
   final double rulerHeight;
-  final Color selectedBarColor;
-  final Color unselectedBarColor;
+  final Color selectedMajorTickColor;
+  final Color selectedMinorTickColor;
+  final Color unselectedMajorTickColor;
+  final Color unselectedMinorTickColor;
+  final Color selectedCenterTickColor;
+  final Color unelectedCenterTickColor;
+
   final double tickSpacing;
   final TextStyle valueTextStyle;
   final ValueChanged<double>? onChanged;
@@ -114,42 +116,48 @@ class RulerSlider extends StatefulWidget {
   final TextStyle labelTextStyle;
   final double majorTickHeight;
   final double minorTickHeight;
+  final bool showSelectedColor;
 
-  const RulerSlider({
-    super.key,
-    this.minValue = 0.0,
-    this.maxValue = 100.0,
-    this.initialValue = 50.0,
-    this.rulerWidth = 300.0,
-    this.rulerHeight = 100.0,
-    this.selectedBarColor = Colors.green,
-    this.unselectedBarColor = Colors.grey,
-    this.tickSpacing = 20.0,
-    this.valueTextStyle = const TextStyle(color: Colors.black, fontSize: 18),
-    this.customLabels,
-    this.onChanged,
-    this.showFixedBar = true,
-    this.fixedBarColor = Colors.red,
-    this.fixedBarWidth = 2.0,
-    this.fixedBarHeight = 60.0,
-    this.showFixedLabel = true,
-    this.fixedLabelColor = Colors.red,
-    this.scrollSensitivity = 0.5,
-    this.enableSnapping = false,
-    this.majorTickInterval = 10,
-    this.labelInterval = 10,
-    this.labelVerticalOffset = 25.0,
-    this.showBottomLabels = true,
-    this.labelTextStyle = const TextStyle(color: Colors.black, fontSize: 12),
-    this.majorTickHeight = 20.0,
-    this.minorTickHeight = 10.0,
-  });
+  const RulerSlider(
+      {super.key,
+      this.minValue = 0.0,
+      this.maxValue = 100.0,
+      this.initialValue = 50.0,
+      this.rulerWidth = 300.0,
+      this.rulerHeight = 100.0,
+      this.unselectedMajorTickColor = Colors.grey,
+      this.unselectedMinorTickColor = Colors.grey,
+      this.unelectedCenterTickColor = Colors.grey,
+      this.selectedMajorTickColor = Colors.green,
+      this.selectedMinorTickColor = Colors.green,
+      this.selectedCenterTickColor = Colors.green,
+      this.tickSpacing = 20.0,
+      this.valueTextStyle = const TextStyle(color: Colors.black, fontSize: 18),
+      this.customLabels,
+      this.onChanged,
+      this.showFixedBar = true,
+      this.fixedBarColor = Colors.red,
+      this.fixedBarWidth = 2.0,
+      this.fixedBarHeight = 60.0,
+      this.showFixedLabel = true,
+      this.fixedLabelColor = Colors.red,
+      this.scrollSensitivity = 0.5,
+      this.enableSnapping = false,
+      this.majorTickInterval = 10,
+      this.labelInterval = 10,
+      this.labelVerticalOffset = 25.0,
+      this.showBottomLabels = true,
+      this.labelTextStyle = const TextStyle(color: Colors.black, fontSize: 12),
+      this.majorTickHeight = 20.0,
+      this.minorTickHeight = 10.0,
+      this.showSelectedColor = true});
 
   @override
   RulerSliderState createState() => RulerSliderState();
 }
 
-class RulerSliderState extends State<RulerSlider> with SingleTickerProviderStateMixin {
+class RulerSliderState extends State<RulerSlider>
+    with SingleTickerProviderStateMixin {
   late double _value;
   late double _rulerPosition;
   late AnimationController _animationController;
@@ -162,10 +170,12 @@ class RulerSliderState extends State<RulerSlider> with SingleTickerProviderState
     // Initialize the value and the ruler position based on the initial value
     _value = widget.initialValue;
     double totalScrollableWidth = widget.maxValue * widget.tickSpacing;
-    _rulerPosition = widget.rulerWidth / 2 - (_value / widget.maxValue) * totalScrollableWidth;
+    _rulerPosition = widget.rulerWidth / 2 -
+        (_value / widget.maxValue) * totalScrollableWidth;
 
     // Initialize the AnimationController for snapping animation
-    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
   }
 
   @override
@@ -181,8 +191,13 @@ class RulerSliderState extends State<RulerSlider> with SingleTickerProviderState
         setState(() {
           _rulerPosition += details.delta.dx * widget.scrollSensitivity;
           double totalScrollableWidth = widget.maxValue * widget.tickSpacing;
-          _rulerPosition = _rulerPosition.clamp(-totalScrollableWidth + widget.rulerWidth / 2, widget.rulerWidth / 2);
-          _value = (((widget.rulerWidth / 2 - _rulerPosition) / totalScrollableWidth) * widget.maxValue).clamp(widget.minValue, widget.maxValue);
+          _rulerPosition = _rulerPosition.clamp(
+              -totalScrollableWidth + widget.rulerWidth / 2,
+              widget.rulerWidth / 2);
+          _value = (((widget.rulerWidth / 2 - _rulerPosition) /
+                      totalScrollableWidth) *
+                  widget.maxValue)
+              .clamp(widget.minValue, widget.maxValue);
 
           if (widget.onChanged != null) {
             widget.onChanged!(_value);
@@ -197,8 +212,12 @@ class RulerSliderState extends State<RulerSlider> with SingleTickerProviderState
             double totalScrollableWidth = widget.maxValue * widget.tickSpacing;
 
             // Animate the snapping
-            _animation = Tween<double>(begin: _rulerPosition, end: widget.rulerWidth / 2 - (snappedValue / widget.maxValue) * totalScrollableWidth)
-                .animate(CurvedAnimation(parent: _animationController, curve: Curves.easeOut))
+            _animation = Tween<double>(
+                    begin: _rulerPosition,
+                    end: widget.rulerWidth / 2 -
+                        (snappedValue / widget.maxValue) * totalScrollableWidth)
+                .animate(CurvedAnimation(
+                    parent: _animationController, curve: Curves.easeOut))
               ..addListener(() {
                 setState(() {
                   _rulerPosition = _animation.value;
@@ -224,12 +243,17 @@ class RulerSliderState extends State<RulerSlider> with SingleTickerProviderState
             CustomPaint(
               size: Size(widget.rulerWidth, widget.rulerHeight),
               painter: RulerPainter(
+                  unelectedCenterTickColor: widget.unelectedCenterTickColor,
+                  unselectedMajorTickColor: widget.unselectedMajorTickColor,
+                  unselectedMinorTickColor: widget.unselectedMinorTickColor,
+                  selectedMajorTickColor: widget.selectedMajorTickColor,
+                  selectedMinorTickColor: widget.selectedMinorTickColor,
+                  selectedCenterTickColor: widget.selectedCenterTickColor,
+                  showSelectedColor: widget.showSelectedColor,
                   rulerPosition: _rulerPosition,
                   maxValue: widget.maxValue,
                   value: _value,
                   rulerWidth: widget.rulerWidth,
-                  selectedBarColor: widget.selectedBarColor,
-                  unselectedBarColor: widget.unselectedBarColor,
                   tickSpacing: widget.tickSpacing,
                   customLabels: widget.customLabels,
                   majorTickInterval: widget.majorTickInterval,
@@ -246,7 +270,8 @@ class RulerSliderState extends State<RulerSlider> with SingleTickerProviderState
                 top: 0,
                 child: Text(
                   _value.toStringAsFixed(1),
-                  style: widget.valueTextStyle.copyWith(color: widget.fixedLabelColor),
+                  style: widget.valueTextStyle
+                      .copyWith(color: widget.fixedLabelColor),
                 ),
               ),
             if (widget.showFixedBar)
@@ -282,8 +307,12 @@ class RulerPainter extends CustomPainter {
   final double maxValue;
   final double value;
   final double rulerWidth;
-  final Color selectedBarColor;
-  final Color unselectedBarColor;
+  final Color selectedMajorTickColor;
+  final Color selectedMinorTickColor;
+  final Color unselectedMajorTickColor;
+  final Color unselectedMinorTickColor;
+  final Color selectedCenterTickColor;
+  final Color unelectedCenterTickColor;
   final double tickSpacing;
   final List<String>? customLabels;
   final int majorTickInterval;
@@ -296,14 +325,19 @@ class RulerPainter extends CustomPainter {
   final double minorTickHeight;
 
   final double barWidth;
+  final bool showSelectedColor;
 
   RulerPainter({
     required this.rulerPosition,
     required this.maxValue,
     required this.value,
     required this.rulerWidth,
-    required this.selectedBarColor,
-    required this.unselectedBarColor,
+    required this.selectedMajorTickColor,
+    required this.selectedMinorTickColor,
+    required this.unselectedMajorTickColor,
+    required this.unselectedMinorTickColor,
+    required this.unelectedCenterTickColor,
+    required this.selectedCenterTickColor,
     required this.tickSpacing,
     required this.customLabels,
     required this.majorTickInterval,
@@ -314,50 +348,83 @@ class RulerPainter extends CustomPainter {
     required this.majorTickHeight,
     required this.minorTickHeight,
     required this.barWidth,
+    required this.showSelectedColor,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint unselectedTickPaint = Paint()
-      ..color = unselectedBarColor
+    // Paint for ticks
+    final Paint unselectedMajorTickPaint = Paint()
+      ..color = unselectedMajorTickColor
       ..strokeWidth = barWidth;
-    final Paint selectedTickPaint = Paint()
-      ..color = selectedBarColor
+    final Paint unselectedMinorTickPaint = Paint()
+      ..color = unselectedMinorTickColor
       ..strokeWidth = barWidth;
+    final Paint selectedMajorTickPaint = Paint()
+      ..color =
+          !showSelectedColor ? unselectedMajorTickColor : selectedMajorTickColor
+      ..strokeWidth = barWidth;
+    final Paint selectedMinorTickPaint = Paint()
+      ..color =
+          !showSelectedColor ? unselectedMinorTickColor : selectedMinorTickColor
+      ..strokeWidth = barWidth;
+    final Paint centerTickPaint = Paint()
+      ..color = !showSelectedColor
+          ? unelectedCenterTickColor
+          : selectedCenterTickColor
+      ..strokeWidth = barWidth;
+
     canvas.translate(rulerPosition, 0);
 
     for (double i = 0; i <= maxValue; i += 1) {
       double xPos = i * tickSpacing;
-      double tickHeight = (i % majorTickInterval == 0) ? majorTickHeight : minorTickHeight;
+      double tickHeight =
+          (i % majorTickInterval == 0) ? majorTickHeight : minorTickHeight;
 
-      if (xPos <= rulerPosition.abs() + size.width / 2) {
-        canvas.drawLine(
-          Offset(xPos, size.height / 2 - tickHeight),
-          Offset(xPos, size.height / 2 + tickHeight),
-          selectedTickPaint,
-        );
+      // Determine if this tick is the center of a 10-tick interval (e.g., 5, 15, 25, etc.)
+      bool isCenterTick = (i / 5) % 2 == 1;
+
+      // Determine whether the tick should use selected or unselected paint
+      Paint tickPaint;
+      if (isCenterTick) {
+        tickPaint = centerTickPaint; // Use special paint for center ticks
+      } else if (xPos <= rulerPosition.abs() + size.width / 2) {
+        tickPaint = (i % majorTickInterval == 0)
+            ? selectedMajorTickPaint
+            : selectedMinorTickPaint;
       } else {
-        canvas.drawLine(
-          Offset(xPos, size.height / 2 - tickHeight),
-          Offset(xPos, size.height / 2 + tickHeight),
-          unselectedTickPaint,
-        );
+        tickPaint = (i % majorTickInterval == 0)
+            ? unselectedMajorTickPaint
+            : unselectedMinorTickPaint;
       }
 
-      if (showBottomLabels) {
-        if (i % labelInterval == 0) {
-          String label = customLabels != null && i ~/ labelInterval < customLabels!.length ? customLabels![i ~/ labelInterval] : i.toStringAsFixed(0);
+      // Draw the tick line
+      canvas.drawLine(
+        Offset(xPos, size.height / 2 - tickHeight),
+        Offset(xPos, size.height / 2 + tickHeight),
+        tickPaint,
+      );
 
-          TextPainter textPainter = TextPainter(
-            text: TextSpan(
-              text: label,
-              style: labelTextStyle,
-            ),
-            textDirection: TextDirection.ltr,
-          );
-          textPainter.layout();
-          textPainter.paint(canvas, Offset(xPos - textPainter.width / 2, size.height / 2 + labelVerticalOffset));
-        }
+      // Draw labels if required
+      if (showBottomLabels && i % labelInterval == 0) {
+        String label =
+            customLabels != null && i ~/ labelInterval < customLabels!.length
+                ? customLabels![i ~/ labelInterval]
+                : i.toStringAsFixed(0);
+
+        TextPainter textPainter = TextPainter(
+          text: TextSpan(
+            text: label,
+            style: labelTextStyle,
+          ),
+          textDirection: TextDirection.ltr,
+        );
+        textPainter.layout();
+        textPainter.paint(
+          canvas,
+          Offset(xPos - textPainter.width / 2,
+              size.height / 2 + labelVerticalOffset),
+        );
       }
     }
   }
