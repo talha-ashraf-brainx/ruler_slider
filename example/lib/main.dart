@@ -23,7 +23,7 @@ class RulerSliderDemo extends StatefulWidget {
 
 class _RulerSliderDemoState extends State<RulerSliderDemo> {
   double minValue = 0.0;
-  double maxValue = 100.0;
+  double maxValue = 120.0;
   double initialValue = 50.0;
   double rulerWidth = 300.0;
   double rulerHeight = 100.0;
@@ -32,8 +32,8 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
   bool showFixedBar = true;
   bool showFixedLabel = true;
   bool enableSnapping = false;
-  int majorTickInterval = 5;
-  int labelInterval = 10;
+  int majorTickInterval = 12;
+  int labelInterval = 12;
   double labelVerticalOffset = 25.0;
   bool showBottomLabels = true;
   double majorTickHeight = 20.0;

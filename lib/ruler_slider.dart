@@ -382,7 +382,7 @@ class RulerPainter extends CustomPainter {
           (i % majorTickInterval == 0) ? majorTickHeight : minorTickHeight;
 
       // Determine if this tick is the center of a 10-tick interval (e.g., 5, 15, 25, etc.)
-      bool isCenterTick = (i / 5) % 2 == 1;
+      bool isCenterTick = (i / (majorTickInterval / 2)) % 2 == 1;
 
       // Determine whether the tick should use selected or unselected paint
       Paint tickPaint;
