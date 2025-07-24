@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ruler_slider/ruler_slider.dart';
+import 'dart:math' as math;
 
 void main() {
   runApp(const RulerSliderDemoApp());
@@ -82,44 +83,45 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
           child: Column(
             children: [
               // Display the RulerSlider with all dynamic values
-              RulerSlider(
-                showSelectedColor: false,
-                selectedMajorTickColor: Colors.blue,
-                selectedMinorTickColor: Colors.blue.shade100,
-                unselectedMajorTickColor: Colors.grey,
-                unselectedMinorTickColor: Colors.grey.shade200,
-                unelectedCenterTickColor: Colors.green,
-                minValue: minValue,
-                maxValue: maxValue,
-                initialValue: initialValue,
-                rulerWidth: MediaQuery.of(context).size.width / 2,
-                rulerHeight: rulerHeight,
-                tickSpacing: tickSpacing,
-                showFixedBar: showFixedBar,
-                fixedBarColor: Colors.red,
-                fixedBarWidth: 2.0,
-                fixedBarHeight: 40.0,
-                showFixedLabel: showFixedLabel,
-                fixedLabelColor: Colors.red,
-                scrollSensitivity: scrollSensitivity,
-                enableSnapping: enableSnapping,
-                majorTickInterval: majorTickInterval,
-                labelInterval: labelInterval,
-                labelVerticalOffset: labelVerticalOffset,
-                showBottomLabels: showBottomLabels,
-                labelTextStyle: TextStyle(
-                  color: labelColorMap[selectedLabelColor]!,
-                  fontSize: 12,
-                ),
-                majorTickHeight: majorTickHeight,
-                minorTickHeight: minorTickHeight,
-                customLabels: customLabels,
-                onChanged: (value) {
-                  setState(() {
-                    initialValue = value / 10;
-                  });
-                },
-              ),
+              // RulerSlider(
+              //   showSelectedColor: false,
+              //   selectedMajorTickColor: Colors.blue,
+              //   selectedMinorTickColor: Colors.blue.shade100,
+              //   unselectedMajorTickColor: Colors.grey,
+              //   unselectedMinorTickColor: Colors.grey.shade200,
+              //   unelectedCenterTickColor: Colors.green,
+              //   minValue: minValue,
+              //   maxValue: maxValue,
+              //   initialValue: initialValue,
+              //   rulerWidth: MediaQuery.of(context).size.width / 2,
+              //   rulerHeight: rulerHeight,
+              //   tickSpacing: tickSpacing,
+              //   showFixedBar: showFixedBar,
+              //   fixedBarColor: Colors.red,
+              //   fixedBarWidth: 2.0,
+              //   fixedBarHeight: 40.0,
+              //   showFixedLabel: showFixedLabel,
+              //   fixedLabelColor: Colors.red,
+              //   scrollSensitivity: scrollSensitivity,
+              //   enableSnapping: enableSnapping,
+              //   majorTickInterval: majorTickInterval,
+              //   labelInterval: labelInterval,
+              //   labelVerticalOffset: labelVerticalOffset,
+              //   showBottomLabels: showBottomLabels,
+              //   labelTextStyle: TextStyle(
+              //     color: labelColorMap[selectedLabelColor]!,
+              //     fontSize: 12,
+              //   ),
+              //   majorTickHeight: majorTickHeight,
+              //   minorTickHeight: minorTickHeight,
+              //   customLabels: customLabels,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       initialValue = value / 10;
+              //     });
+              //   },
+              // ),
+              rulerSlider(context),
               Divider(),
               // Controls to dynamically change properties
               Text('Adjust RulerSlider Features:'),
@@ -273,6 +275,79 @@ class _RulerSliderDemoState extends State<RulerSliderDemo> {
                         });
                       },
                     ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget rulerSlider(BuildContext context) {
+    return Container(
+      width: 211,
+      height: 211,
+      alignment: Alignment.center,
+      child: Transform.rotate(
+        angle: math.pi / 2,
+        child: SizedBox(
+          height: 114,
+          width: 211,
+          child: Stack(
+            children: [
+              Stack(
+                children: [
+                  PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      RulerSlider(
+                        showSelectedColor: false,
+                        selectedMajorTickColor: Colors.transparent,
+                        selectedMinorTickColor: Colors.transparent,
+                        unselectedMajorTickColor: Colors.grey,
+                        unselectedMinorTickColor: Colors.grey,
+                        unelectedCenterTickColor: Colors.transparent,
+                        minValue: 0,
+                        maxValue: 120,
+                        initialValue: 50,
+                        rulerWidth: 211,
+                        rulerHeight: 114,
+                        tickSpacing: 5,
+                        fixedBarColor: Colors.transparent,
+                        fixedBarWidth: 1.0,
+                        fixedBarHeight: 40.0,
+                        showFixedLabel: false,
+                        majorTickInterval: 12,
+                        labelInterval: 12,
+                        showBottomLabels: true,
+                        labelTextStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
+                        labelVerticalOffset: 40,
+                        majorTickHeight: 21.71,
+                        minorTickHeight: 11.64,
+                        customLabels: customLabels,
+                        onChanged: (value) {
+                          setState(() {
+                            initialValue = value / 10;
+                          });
+                        },
+                        labelRotationAngle: 3 * math.pi / 2,
+                      ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        top: 21.5,
+                        child: Container(
+                          width: 211,
+                          height: 4,
+                          color: Colors.red,
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
